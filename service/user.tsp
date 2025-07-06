@@ -30,4 +30,22 @@ namespace EngTrainingSocial.User {
   } | {
     @statusCode statusCode: 404;
   };
+
+  @route("/user/{id}/follow")
+  @get
+  op followUser(@path id: uuid): {
+    @statusCode statusCode: 200;
+    @body user: User;
+  } | {
+    @statusCode statusCode: 404;
+  };
+
+  @route("/user/{id}/unfollow")
+  @get
+  op unfollowUser(@path id: uuid): {
+    @statusCode statusCode: 200;
+    @body user: User;
+  } | {
+    @statusCode statusCode: 404;
+  };
 }

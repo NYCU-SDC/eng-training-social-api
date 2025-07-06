@@ -6,7 +6,7 @@ using Http;
 namespace EngTrainingSocial.Comment {
   model Comment {
     @doc("Unique identifier for the comment")
-    id: string;
+    id: uuid;
 
     @doc("Title of the comment")
     title: string;

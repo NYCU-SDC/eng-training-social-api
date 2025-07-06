@@ -19,9 +19,6 @@ namespace EngTrainingSocial.Notification {
     @doc("The id of the related content, such as comment and post")
     relatedId: uuid;
 
-    @doc("The reading status of the notification")
-    read: boolean;
-
     @doc("Timestamp of when the post was created")
     createdAt: string;
 
@@ -36,14 +33,5 @@ namespace EngTrainingSocial.Notification {
     @body notifications: Notification[];
   } | {
     @statusCode statusCode: 400;
-  };
-
-  @route("/notification/{id}/read")
-  @get
-  op readNotification(@path id: uuid): {
-    @statusCode statusCode: 200;
-    @body notification: Notification;
-  } | {
-    @statusCode statusCode: 404;
   };
 }

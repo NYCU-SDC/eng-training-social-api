@@ -4,6 +4,7 @@ import "./service/auth.tsp";
 import "./service/post.tsp";
 import "./service/user.tsp";
 import "./service/comment.tsp";
+import "./service/notification.tsp";
 
 using Http;
 using Versioning;

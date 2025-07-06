@@ -22,7 +22,7 @@ namespace EngTrainingSocial.Comment {
     updatedAt: string;
 
     @doc("The reaction of the login user to the comment")
-    reactionMe: Comment.Comment;
+    reactionMe: Reaction.Reaction;
   }
 
   model CommentRequest {

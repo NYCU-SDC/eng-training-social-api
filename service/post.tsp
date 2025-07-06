@@ -40,7 +40,7 @@ namespace EngTrainingSocial.Post {
 
   @route("/post/{id}")
   @get
-  op getPost(@path id: string): {
+  op getPost(@path id: uuid): {
     @statusCode statusCode: 200;
     @body post: Post;
   } | {
@@ -57,7 +57,7 @@ namespace EngTrainingSocial.Post {
 
   @route("/post/{id}")
   @put
-  op updatePost(@path id: string): {
+  op updatePost(@path id: uuid): {
     @statusCode statusCode: 200;
     @body post: Post;
   } | {
@@ -66,7 +66,7 @@ namespace EngTrainingSocial.Post {
 
   @route("/post/{id}")
   @delete
-  op deletePost(@path id: string): {
+  op deletePost(@path id: uuid): {
     @statusCode statusCode: 204;
   } | {
     @statusCode statusCode: 404;

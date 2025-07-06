@@ -35,7 +35,7 @@ namespace EngTrainingSocial.Comment {
 
   @route("/post/{id}/comments")
   @get
-  op getComments(@path id: string): {
+  op getComments(@path id: uuid): {
     @statusCode statusCode: 200;
     @body comments: Comment[];
   } | {
@@ -44,7 +44,7 @@ namespace EngTrainingSocial.Comment {
 
   @route("/comment/{id}")
   @get
-  op getComment(@path id: string): {
+  op getComment(@path id: uuid): {
     @statusCode statusCode: 200;
     @body comment: Comment;
   } | {
@@ -53,7 +53,7 @@ namespace EngTrainingSocial.Comment {
 
   @route("/post/{id}/comments")
   @post
-  op createComments(@path id: string): {
+  op createComments(@path id: uuid): {
     @statusCode statusCode: 204;
   } | {
     @statusCode statusCode: 400;
@@ -61,7 +61,7 @@ namespace EngTrainingSocial.Comment {
 
   @route("/comment/{id}")
   @put
-  op updateComment(@path id: string): {
+  op updateComment(@path id: uuid): {
     @statusCode statusCode: 200;
     @body comment: Comment;
   } | {
@@ -70,7 +70,7 @@ namespace EngTrainingSocial.Comment {
 
   @route("/comment/{id}")
   @delete
-  op deleteComment(@path id: string): {
+  op deleteComment(@path id: uuid): {
     @statusCode statusCode: 204;
   } | {
     @statusCode statusCode: 404;

@@ -14,6 +14,9 @@ namespace EngTrainingSocial.Comment {
     @doc("Content of the comment")
     content: string;
 
+    @doc("The id of the author of the comment")
+    authorId: uuid;
+
     @doc("Timestamp of when the comment was created")
     createdAt: string;
 

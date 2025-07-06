@@ -1,4 +1,5 @@
 import "@typespec/http";
+import "./follow.tsp";
 
 using Http;
 
@@ -16,6 +17,9 @@ namespace EngTrainingSocial.User {
 
     @doc("Timestamp of when the post was last updated")
     updatedAt: string;
+
+    @doc("The following status of the user to the user")
+    followMe: Follow.Follow;
   }
 
   @route("/user/{id}")

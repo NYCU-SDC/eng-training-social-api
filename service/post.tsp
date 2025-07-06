@@ -6,7 +6,7 @@ using Http;
 namespace EngTrainingSocial.Post {
   model Post {
     @doc("Unique identifier for the post")
-    id: string;
+    id: uuid;
 
     @doc("Title of the post")
     title: string;

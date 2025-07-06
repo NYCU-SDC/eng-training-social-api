@@ -76,4 +76,13 @@ namespace EngTrainingSocial.Post {
   } | {
     @statusCode statusCode: 404;
   };
+
+  @route("/post/{id}/react")
+  @post
+  op reactPost(@path id: uuid): {
+    @statusCode statusCode: 200;
+    @body post: Post;
+  } | {
+    @statusCode statusCode: 404;
+  };
 }

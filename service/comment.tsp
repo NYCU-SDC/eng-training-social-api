@@ -75,4 +75,13 @@ namespace EngTrainingSocial.Comment {
   } | {
     @statusCode statusCode: 404;
   };
+
+  @route("/comment/{id}/react")
+  @post
+  op reactComment(@path id: uuid): {
+    @statusCode statusCode: 200;
+    @body comment: Comment;
+  } | {
+    @statusCode statusCode: 404;
+  };
 }

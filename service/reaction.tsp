@@ -1,8 +1,8 @@
 namespace EngTrainingSocial.Reaction;
 
 enum ReactionType {
-  like: "like",
-  dislike: "dislike",
+  like: "LIKE",
+  dislike: "DISLIKE",
 }
 
 model Reaction {

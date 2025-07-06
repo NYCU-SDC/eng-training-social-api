@@ -79,7 +79,7 @@ namespace EngTrainingSocial.Post {
 
   @route("/post/{id}/react")
   @post
-  op reactPost(@path id: uuid): {
+  op reactPost(@path id: uuid, @body reaction: Reaction.Reaction): {
     @statusCode statusCode: 200;
     @body post: Post;
   } | {

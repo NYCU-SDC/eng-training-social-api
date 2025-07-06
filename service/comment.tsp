@@ -78,7 +78,7 @@ namespace EngTrainingSocial.Comment {
 
   @route("/comment/{id}/react")
   @post
-  op reactComment(@path id: uuid): {
+  op reactComment(@path id: uuid, @body reaction: Reaction.Reaction): {
     @statusCode statusCode: 200;
     @body comment: Comment;
   } | {

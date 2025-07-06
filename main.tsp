@@ -1,5 +1,6 @@
 import "@typespec/http";
 import "@typespec/versioning";
+import "./service/auth.tsp";
 import "./service/post.tsp";
 
 using Http;

@@ -1,4 +1,5 @@
 import "@typespec/http";
+import "./reaction.tsp";
 
 using Http;
 
@@ -19,6 +20,9 @@ namespace EngTrainingSocial.Comment {
 
     @doc("Timestamp of when the comment was last updated")
     updatedAt: string;
+
+    @doc("The reaction of the login user to the comment")
+    reactionMe: Comment.Comment;
   }
 
   model CommentRequest {

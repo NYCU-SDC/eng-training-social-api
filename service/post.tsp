@@ -1,4 +1,6 @@
 import "@typespec/http";
+import "./reaction.tsp";
+import "./follow.tsp";
 
 using Http;
 
@@ -19,6 +21,9 @@ namespace EngTrainingSocial.Post {
 
     @doc("Timestamp of when the post was last updated")
     updatedAt: string;
+
+    @doc("The reaction of the login user to the post")
+    reactionMe: Reaction.Reaction;
   }
 
   model PostRequest {

@@ -1,0 +1,74 @@
+import "@typespec/http";
+
+using Http;
+
+@tag("Comment")
+namespace EngTrainingSocial.Comment {
+  model Comment {
+    @doc("Unique identifier for the comment")
+    id: string;
+
+    @doc("Title of the comment")
+    title: string;
+
+    @doc("Content of the comment")
+    content: string;
+
+    @doc("Timestamp of when the comment was created")
+    createdAt: string;
+
+    @doc("Timestamp of when the comment was last updated")
+    updatedAt: string;
+  }
+
+  model CommentRequest {
+    @doc("Title of the comment")
+    title: string;
+
+    @doc("Content of the comment")
+    content: string;
+  }
+
+  @route("/post/{id}/comments")
+  @get
+  op getComments(@path id: string): {
+    @statusCode statusCode: 200;
+    @body comments: Comment[];
+  } | {
+    @statusCode statusCode: 400;
+  };
+
+  @route("/comment/{id}")
+  @get
+  op getComment(@path id: string): {
+    @statusCode statusCode: 200;
+    @body comment: Comment;
+  } | {
+    @statusCode statusCode: 404;
+  };
+
+  @route("/post/{id}/comments")
+  @post
+  op createComments(@path id: string): {
+    @statusCode statusCode: 204;
+  } | {
+    @statusCode statusCode: 400;
+  };
+
+  @route("/comment/{id}")
+  @put
+  op updateComment(@path id: string): {
+    @statusCode statusCode: 200;
+    @body comment: Comment;
+  } | {
+    @statusCode statusCode: 404;
+  };
+
+  @route("/comment/{id}")
+  @delete
+  op deleteComment(@path id: string): {
+    @statusCode statusCode: 204;
+  } | {
+    @statusCode statusCode: 404;
+  };
+}

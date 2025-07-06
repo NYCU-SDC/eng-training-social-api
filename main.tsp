@@ -2,6 +2,7 @@ import "@typespec/http";
 import "@typespec/versioning";
 import "./service/auth.tsp";
 import "./service/post.tsp";
+import "./service/comment.tsp";
 
 using Http;
 using Versioning;

@@ -14,9 +14,6 @@ namespace EngTrainingSocial.Post {
         @doc("Content of the post")
         content: string;
 
-        @doc("The id of the author of the post")
-        authorId: uuid;
-
         @doc("Timestamp of when the post was created")
         createdAt: string;
 

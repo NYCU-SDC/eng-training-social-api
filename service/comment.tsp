@@ -9,9 +9,6 @@ namespace EngTrainingSocial.Comment {
         @doc("Unique identifier for the comment")
         id: uuid;
 
-        @doc("Title of the comment")
-        title: string;
-
         @doc("Content of the comment")
         content: string;
 
@@ -29,9 +26,6 @@ namespace EngTrainingSocial.Comment {
     }
 
     model CommentRequest {
-        @doc("Title of the comment")
-        title: string;
-
         @doc("Content of the comment")
         content: string;
     }
@@ -58,6 +52,7 @@ namespace EngTrainingSocial.Comment {
     @post
     op createComments(@path id: uuid): {
         @statusCode statusCode: 204;
+        @body comment: Comment;
     } | {
         @statusCode statusCode: 400;
     };

@@ -52,7 +52,7 @@ namespace EngTrainingSocial.Post {
 
   @route("/posts")
   @post
-  op createPosts(): {
+  op createPosts(@body request: PostRequest): {
     @statusCode statusCode: 204;
   } | {
     @statusCode statusCode: 400;
@@ -60,7 +60,7 @@ namespace EngTrainingSocial.Post {
 
   @route("/post/{id}")
   @put
-  op updatePost(@path id: uuid): {
+  op updatePost(@path id: uuid, @body request: PostRequest): {
     @statusCode statusCode: 200;
     @body post: Post;
   } | {

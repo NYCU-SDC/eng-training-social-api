@@ -50,7 +50,7 @@ namespace EngTrainingSocial.Comment {
 
   @route("/post/{id}/comments")
   @post
-  op createComments(@path id: uuid): {
+  op createComments(@path id: uuid, @body request: CommentRequest): {
     @statusCode statusCode: 204;
     @body comment: Comment;
   } | {
@@ -59,7 +59,7 @@ namespace EngTrainingSocial.Comment {
 
   @route("/comment/{id}")
   @put
-  op updateComment(@path id: uuid): {
+  op updateComment(@path id: uuid, @body request: CommentRequest): {
     @statusCode statusCode: 200;
     @body comment: Comment;
   } | {

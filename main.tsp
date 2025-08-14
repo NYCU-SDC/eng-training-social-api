@@ -16,7 +16,7 @@ using Versioning;
 namespace EngTrainingSocial;
 
 enum Versions {
-    v1: "1.0.0",
+  v1: "1.0.0",
 }
 
 @format("uuid")

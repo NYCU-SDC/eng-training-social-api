@@ -19,6 +19,9 @@ namespace EngTrainingSocial.Notification {
     @doc("The id of the related content, such as comment and post")
     relatedId: uuid;
 
+    @doc("The content of the notification")
+    content: string;
+
     @doc("Timestamp of when the post was created")
     createdAt: string;
 

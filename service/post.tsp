@@ -84,7 +84,7 @@ namespace EngTrainingSocial.Post {
   @post
   op reactPost(@path id: uuid, @body reaction: Reaction.Reaction): {
     @statusCode statusCode: 200;
-    @body post: Post;
+    @body reaction: Reaction.Reaction;
   } | {
     @statusCode statusCode: 404;
   };

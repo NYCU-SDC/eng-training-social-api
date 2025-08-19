@@ -78,7 +78,7 @@ namespace EngTrainingSocial.Comment {
   @post
   op reactComment(@path id: uuid, @body reaction: Reaction.Reaction): {
     @statusCode statusCode: 200;
-    @body comment: Comment;
+    @body reaction: Reaction.Reaction;
   } | {
     @statusCode statusCode: 404;
   };

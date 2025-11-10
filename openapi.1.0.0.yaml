@@ -1,0 +1,584 @@
+openapi: 3.1.0
+info:
+  title: Eng Training Social API
+  version: 1.0.0
+tags:
+  - name: Auth
+  - name: Post
+  - name: User
+  - name: Comment
+  - name: Notification
+paths:
+  /api/comment/{id}:
+    get:
+      operationId: Comment_getComment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/uuid'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment.Comment'
+        '404':
+          description: The server cannot find the requested resource.
+      tags:
+        - Comment
+    put:
+      operationId: Comment_updateComment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/uuid'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment.Comment'
+        '404':
+          description: The server cannot find the requested resource.
+      tags:
+        - Comment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Comment.CommentRequest'
+    delete:
+      operationId: Comment_deleteComment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/uuid'
+      responses:
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
+        '404':
+          description: The server cannot find the requested resource.
+      tags:
+        - Comment
+  /api/comment/{id}/react:
+    post:
+      operationId: Comment_reactComment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/uuid'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reaction.Reaction'
+        '404':
+          description: The server cannot find the requested resource.
+      tags:
+        - Comment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reaction.Reaction'
+  /api/login/oauth/{provider}:
+    get:
+      operationId: Auth_loginWithOAuth
+      parameters:
+        - name: provider
+          in: path
+          required: true
+          description: The OAuth provider to use for login.
+          schema:
+            $ref: '#/components/schemas/Auth.OAuthProvider'
+        - name: c
+          in: query
+          required: true
+          description: The callback URL of the Oauth login. [See details](https://clustron.atlassian.net/wiki/spaces/cd/pages/18219016/Backend+OAuth+JWT+Manual)
+          schema:
+            type: string
+          explode: false
+        - name: r
+          in: query
+          required: false
+          description: The redirect URL to return to after login.
+          schema:
+            type: string
+          explode: false
+      responses:
+        '302':
+          description: Redirection
+        '404':
+          description: The server cannot find the requested resource.
+      tags:
+        - Auth
+  /api/logout:
+    get:
+      operationId: Auth_logout
+      parameters:
+        - name: r
+          in: query
+          required: false
+          description: The redirect URL to return to after logout.
+          schema:
+            type: string
+          explode: false
+      responses:
+        '302':
+          description: Redirection
+        '404':
+          description: The server cannot find the requested resource.
+      tags:
+        - Auth
+  /api/notifications:
+    get:
+      operationId: Notification_getNotifications
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Notification.Notification'
+        '400':
+          description: The server could not understand the request due to invalid syntax.
+      tags:
+        - Notification
+  /api/post/{id}:
+    get:
+      operationId: Post_getPost
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/uuid'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post.Post'
+        '404':
+          description: The server cannot find the requested resource.
+      tags:
+        - Post
+    put:
+      operationId: Post_updatePost
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/uuid'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post.Post'
+        '404':
+          description: The server cannot find the requested resource.
+      tags:
+        - Post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Post.PostRequest'
+    delete:
+      operationId: Post_deletePost
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/uuid'
+      responses:
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
+        '404':
+          description: The server cannot find the requested resource.
+      tags:
+        - Post
+  /api/post/{id}/comments:
+    get:
+      operationId: Comment_getComments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/uuid'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comment.Comment'
+        '400':
+          description: The server could not understand the request due to invalid syntax.
+      tags:
+        - Comment
+    post:
+      operationId: Comment_createComments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/uuid'
+      responses:
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment.Comment'
+        '400':
+          description: The server could not understand the request due to invalid syntax.
+      tags:
+        - Comment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Comment.CommentRequest'
+  /api/post/{id}/react:
+    post:
+      operationId: Post_reactPost
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/uuid'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reaction.Reaction'
+        '404':
+          description: The server cannot find the requested resource.
+      tags:
+        - Post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reaction.Reaction'
+  /api/posts:
+    get:
+      operationId: Post_getPosts
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post.Post'
+        '400':
+          description: The server could not understand the request due to invalid syntax.
+      tags:
+        - Post
+    post:
+      operationId: Post_createPosts
+      parameters: []
+      responses:
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
+        '400':
+          description: The server could not understand the request due to invalid syntax.
+      tags:
+        - Post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Post.PostRequest'
+  /api/user/{id}:
+    get:
+      operationId: User_getUser
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/uuid'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User.User'
+        '404':
+          description: The server cannot find the requested resource.
+      tags:
+        - User
+  /api/user/{id}/follow:
+    get:
+      operationId: User_followUser
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/uuid'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User.User'
+        '404':
+          description: The server cannot find the requested resource.
+      tags:
+        - User
+  /api/user/{id}/unfollow:
+    get:
+      operationId: User_unfollowUser
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/uuid'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User.User'
+        '404':
+          description: The server cannot find the requested resource.
+      tags:
+        - User
+components:
+  schemas:
+    Auth.OAuthProvider:
+      type: string
+      enum:
+        - google
+    Comment.Comment:
+      type: object
+      required:
+        - id
+        - content
+        - authorId
+        - createdAt
+        - updatedAt
+        - reactionMe
+      properties:
+        id:
+          allOf:
+            - $ref: '#/components/schemas/uuid'
+          description: Unique identifier for the comment
+        content:
+          type: string
+          description: Content of the comment
+        authorId:
+          allOf:
+            - $ref: '#/components/schemas/uuid'
+          description: The id of the author of the comment
+        createdAt:
+          type: string
+          description: Timestamp of when the comment was created
+        updatedAt:
+          type: string
+          description: Timestamp of when the comment was last updated
+        reactionMe:
+          allOf:
+            - $ref: '#/components/schemas/Reaction.Reaction'
+          description: The reaction of the login user to the comment
+    Comment.CommentRequest:
+      type: object
+      required:
+        - content
+      properties:
+        content:
+          type: string
+          description: Content of the comment
+    Follow.Follow:
+      type: object
+      required:
+        - follow
+      properties:
+        follow:
+          type: boolean
+          description: The user follow status
+    Notification.Notification:
+      type: object
+      required:
+        - id
+        - type
+        - relatedId
+        - content
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          allOf:
+            - $ref: '#/components/schemas/uuid'
+          description: Unique identifier for the notification
+        type:
+          allOf:
+            - $ref: '#/components/schemas/Notification.NotificationType'
+          description: Notification type of the notification
+        relatedId:
+          allOf:
+            - $ref: '#/components/schemas/uuid'
+          description: The id of the related content, such as comment and post
+        content:
+          type: string
+          description: The content of the notification
+        createdAt:
+          type: string
+          description: Timestamp of when the post was created
+        updatedAt:
+          type: string
+          description: Timestamp of when the post was last updated
+    Notification.NotificationType:
+      type: string
+      enum:
+        - NEW_COMMENT
+        - NEW_POST
+    Post.Post:
+      type: object
+      required:
+        - id
+        - title
+        - content
+        - authorId
+        - createdAt
+        - updatedAt
+        - reactionMe
+      properties:
+        id:
+          allOf:
+            - $ref: '#/components/schemas/uuid'
+          description: Unique identifier for the post
+        title:
+          type: string
+          description: Title of the post
+        content:
+          type: string
+          description: Content of the post
+        authorId:
+          allOf:
+            - $ref: '#/components/schemas/uuid'
+          description: The id of the author of the post
+        createdAt:
+          type: string
+          description: Timestamp of when the post was created
+        updatedAt:
+          type: string
+          description: Timestamp of when the post was last updated
+        reactionMe:
+          allOf:
+            - $ref: '#/components/schemas/Reaction.Reaction'
+          description: The reaction of the login user to the post
+    Post.PostRequest:
+      type: object
+      required:
+        - title
+        - content
+      properties:
+        title:
+          type: string
+          description: Title of the post
+        content:
+          type: string
+          description: Content of the post
+    Reaction.Reaction:
+      type: object
+      required:
+        - reaction
+      properties:
+        reaction:
+          allOf:
+            - $ref: '#/components/schemas/Reaction.ReactionType'
+          description: The user reaction
+    Reaction.ReactionType:
+      type: string
+      enum:
+        - LIKE
+        - DISLIKE
+        - NONE
+    User.User:
+      type: object
+      required:
+        - id
+        - username
+        - email
+        - createdAt
+        - updatedAt
+        - followMe
+      properties:
+        id:
+          allOf:
+            - $ref: '#/components/schemas/uuid'
+          description: Unique identifier for the user
+        username:
+          type: string
+          description: Title of the user
+        email:
+          type: string
+          description: Email of the user
+        createdAt:
+          type: string
+          description: Timestamp of when the post was created
+        updatedAt:
+          type: string
+          description: Timestamp of when the post was last updated
+        followMe:
+          allOf:
+            - $ref: '#/components/schemas/Follow.Follow'
+          description: The following status of the user to the user
+    Versions:
+      type: string
+      enum:
+        - 1.0.0
+    email:
+      type: string
+      format: email
+    uuid:
+      type: string
+      format: uuid
+servers:
+  - url: https://example.com
+    description: Single server endpoint
+    variables: {}
